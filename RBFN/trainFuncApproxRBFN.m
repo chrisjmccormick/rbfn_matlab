@@ -87,12 +87,22 @@ function [Centers, betas, Theta] = trainFuncApproxRBFN(X_train, y_train, numRBFN
     end
 
     if (normalize)
+        % Sum up the activations across the RBF neurons.
+        a_sums = sum(X_activ, 2);
+        
+        % Search for any sums equal to 0.
+        indeces = find(a_sums == 0);
+        
+        % Replace these with the value '1', so the division in the next
+        % step will yield 0 instead of NaN.
+        a_sums(indeces) = 1;
+        
         % X_activ contains 1 row per training example, and one column per RBF neuron.
         % Each row holds the neuron activations for that training example.
         %
         % Divide each neuron activation by the sum of the neuron activations for that
         % training example.
-        X_activ = bsxfun(@rdivide, X_activ, sum(X_activ, 2));
+        X_activ = bsxfun(@rdivide, X_activ, a_sums);
     end
     
     % Add a column of 1s for the bias term.
