@@ -31,7 +31,7 @@ for (i = 1 : k)
         points = X((memberships == i), :);
 
         % Compute the new centroid as the mean of the data points.
-        centroids(i, :) = mean(points);    
+        centroids(i, :) = mean(points, 1);    
     end
 end
 
