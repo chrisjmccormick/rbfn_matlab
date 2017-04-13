@@ -25,7 +25,8 @@ function z = evaluateFuncApproxRBFN(Centers, betas, Theta, normalize, input)
     phis = getRBFActivations(Centers, betas, input);
     
     % Normalize the neuron activations.  
-    if (normalize)
+    % If the sum of the activations is zero, then don't normalize.
+    if (normalize && (sum(phis) ~= 0))        
         phis = phis ./ sum(phis);
     end
     
