@@ -1,6 +1,6 @@
 % ======== runRBFNFuncApproxExample ======== 
-% This script performs Gaussian Kernel Regression on a generated 
-% two-dimensional dataset.
+% This script trains an RBFN on a generated two-dimensional dataset,
+% Then plots its output over an example input range.
 %
 % Thank you to Youngmok Yun; the 2D function is from his code here:
 % http://youngmok.com/gaussian-kernel-regression-with-matlab-code/
